@@ -594,7 +594,7 @@ quarterly_summary_xtab = dcast(site_quarterly_summary, site_code+site_name+count
 write.csv(fl_filter_summary, 'fl_filter_summary.csv')
 dput(fl_pm, file='fl_pm.txt')
 write.csv(fl_pm, file='fl_pm.csv')
-write.csv(data_comp_xtab, 'fl_data_completenes.csv')
+write.csv(quarterly_summary_xtab, 'fl_quarterly_summary.csv')
 
 # Create Plot
 plot_data = data.frame(
@@ -614,6 +614,8 @@ filter_summary_plot = ggplot(data=plot_data,
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 filter_summary_plot
+ggsave('Florida PM25 Quarterly Filter Summary.pdf', filter_summary_plot,
+       width=11, height=8.5)
 
 
 summary_of_criteria = data.frame(sapply( fl_pm[ c('pre_cond_time_out', 'post_cond_time_out',
